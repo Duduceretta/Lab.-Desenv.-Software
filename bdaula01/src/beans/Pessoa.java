@@ -14,6 +14,14 @@ public class Pessoa {
     private String sexo;
     private String idioma;
 
+    public Pessoa(String nome, String sexo, String idioma) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.idioma = idioma;
+    }
+
+    
+    
     public int getId() {
         return id;
     }

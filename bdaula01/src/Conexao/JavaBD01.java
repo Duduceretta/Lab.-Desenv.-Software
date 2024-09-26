@@ -16,15 +16,9 @@ public class JavaBD01 {
         Conexao c = new Conexao();
         c.getConexao();
         
-        Pessoa p = new Pessoa();
-        p.setNome("Ricardo");
-        p.setSexo("M");
-        p.setIdioma("Português");
-        
-        PessoaDAO pDAO = new PessoaDAO();
-        pDAO.inserir(p);
         
         
         
+   
     }
 }
