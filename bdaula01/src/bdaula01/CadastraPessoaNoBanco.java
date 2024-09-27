@@ -39,6 +39,7 @@ public class CadastraPessoaNoBanco extends javax.swing.JFrame {
         rdoFeminino = new javax.swing.JRadioButton();
         cmbIdioma = new javax.swing.JComboBox<>();
         btnSalvar = new javax.swing.JButton();
+        lblCadastro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,35 +67,45 @@ public class CadastraPessoaNoBanco extends javax.swing.JFrame {
             }
         });
 
+        lblCadastro.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblCadastro.setText("Cadastro Pessoa");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblSexo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoMasculino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoFeminino))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblIdioma)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSalvar))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSexo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdoMasculino)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdoFeminino))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblIdioma)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalvar)))
-                .addContainerGap(266, Short.MAX_VALUE))
+                        .addGap(174, 174, 174)
+                        .addComponent(lblCadastro)))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addContainerGap()
+                .addComponent(lblCadastro)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -108,12 +119,18 @@ public class CadastraPessoaNoBanco extends javax.swing.JFrame {
                     .addComponent(lblIdioma)
                     .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalvar))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void limparFormulario(){
+        txtNome.setText("");
+        cmbIdioma.setSelectedIndex(0);
+        btngrpSexo.clearSelection();
+    }
+    
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         nome = txtNome.getText();
         idioma = (String) cmbIdioma.getSelectedItem();
@@ -129,9 +146,7 @@ public class CadastraPessoaNoBanco extends javax.swing.JFrame {
         PessoaDAO pessoaDAO = new PessoaDAO();
         pessoaDAO.inserir(pessoa);
         
-        txtNome.setText("");
-        cmbIdioma.setSelectedIndex(0);
-        btngrpSexo.clearSelection();
+        limparFormulario();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
@@ -173,6 +188,7 @@ public class CadastraPessoaNoBanco extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.ButtonGroup btngrpSexo;
     private javax.swing.JComboBox<String> cmbIdioma;
+    private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblIdioma;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSexo;
