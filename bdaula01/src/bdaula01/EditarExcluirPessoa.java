@@ -48,7 +48,7 @@ public class EditarExcluirPessoa extends javax.swing.JFrame {
         rdoMasculino = new javax.swing.JRadioButton();
         rdoFeminino = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblEditarExcluir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblEditarExcluir.setText("Editar e Excluir Pessoa:");
@@ -151,9 +151,9 @@ public class EditarExcluirPessoa extends javax.swing.JFrame {
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConsultar))
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSexo)
@@ -195,18 +195,29 @@ public class EditarExcluirPessoa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Pessoa nao encontrada");
         }else{
             txtNome.setText(p.getNome());
-            btngrpSexo.set(p.getSexo());
+            if(p.getSexo().equals("M")){
+                rdoMasculino.setSelected(true);
+            }else{
+                rdoFeminino.setSelected(true);
+            }
             cmbIdioma.setSelectedItem(p.getIdioma());
             txtIDPessoa.setText(String.valueOf(p.getId()));
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        String sexo = null;
+        if(rdoMasculino.isSelected()){
+            sexo = "M";
+        }else if(rdoFeminino.isSelected()){
+            sexo = "F";
+        }
+        
         Pessoa p = new Pessoa();
-        p.setId(Integer.parseInt(txtIDPessoa.getText()));
+        p.setId(Integer.parseInt(txtId.getText()));
         p.setNome(txtNome.getText());
-        p.setSexo(txtSexo.getText());
-        p.setIdioma(txtIdioma.getText());
+        p.setSexo(sexo);
+        p.setIdioma(cmbIdioma.getSelectedItem().toString());
         
         PessoaDAO pDAO = new PessoaDAO();
         pDAO.editar(p);
