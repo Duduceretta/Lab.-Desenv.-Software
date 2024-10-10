@@ -20,7 +20,7 @@ public class Conexao {
                     "root", "laboratorio");
             System.out.println("Conexao realizada com sucesso");
             return conn;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Erro ao conectar no BD "+e.getMessage());
             return null;
         }
