@@ -175,10 +175,10 @@ public class EditarExcluirPessoa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void limparFromulario(){
+    private void limparFormulario(){
         txtId.setText("");
         txtNome.setText("");
-        cmbIdioma.setSelectedItem(0);
+        cmbIdioma.setSelectedIndex(0);
         btngrpSexo.clearSelection();
         txtIDPessoa.setText("");
     }
@@ -221,7 +221,7 @@ public class EditarExcluirPessoa extends javax.swing.JFrame {
         
         PessoaDAO pDAO = new PessoaDAO();
         pDAO.editar(p);
-        limparFromulario();
+        limparFormulario();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -230,7 +230,7 @@ public class EditarExcluirPessoa extends javax.swing.JFrame {
         if(resposta == JOptionPane.YES_OPTION){
             PessoaDAO pDAO = new PessoaDAO();
             pDAO.excluir(Integer.parseInt(txtId.getText()));
-            limparFromulario();
+            limparFormulario();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
