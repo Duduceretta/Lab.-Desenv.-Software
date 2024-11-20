@@ -4,6 +4,8 @@
  */
 package beans;
 
+import java.util.Objects;
+
 /**
  *
  * @author laboratorio
@@ -56,4 +58,50 @@ public class Pessoa {
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }    
+
+    @Override
+    public String toString() {
+        return this.id+" - "+this.nome;
+    }
+    
+    public String toStringID(){
+        return String.valueOf(this.id);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + this.id;
+        hash = 17 * hash + Objects.hashCode(this.nome);
+        hash = 17 * hash + Objects.hashCode(this.sexo);
+        hash = 17 * hash + Objects.hashCode(this.idioma);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Pessoa other = (Pessoa) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.sexo, other.sexo)) {
+            return false;
+        }
+        return Objects.equals(this.idioma, other.idioma);
+    }
+  
+    
+    
 }
