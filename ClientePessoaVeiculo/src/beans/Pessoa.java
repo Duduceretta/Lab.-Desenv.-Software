@@ -26,8 +26,6 @@ public class Pessoa implements Serializable{
         this.idioma = idioma;
     }
 
-    
-    
     public int getId() {
         return id;
     }
@@ -102,7 +100,4 @@ public class Pessoa implements Serializable{
         }
         return Objects.equals(this.idioma, other.idioma);
     }
-  
-    
-    
 }
